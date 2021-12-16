@@ -1,0 +1,6 @@
+[submodule "ms-tpm-20-ref"]
+	path = ms-tpm-20-ref
+	url = https://github.com/microsoft/ms-tpm-20-ref.git
+[submodule "openssl"]
+	path = openssl
+	url = https://github.com/openssl/openssl.git
