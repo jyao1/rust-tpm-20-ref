@@ -24,5 +24,5 @@ void *realloc(void *p, size_t n)
 
 int rand(void)
 {
-    (int)__fw_rdrand32();
+    return (int)__fw_rdrand32();
 }
