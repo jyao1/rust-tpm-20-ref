@@ -19,3 +19,25 @@ This package is only the sample code to show the concept. It does not have a ful
 ```
 cargo build -Zbuild-std=core,alloc,compiler_builtins -Zbuild-std-features=compiler-builtins-mem --target x86_64-unknown-uefi --release
 ```
+
+## Directory layout
+
+### ms-tmp-20-ref
+
+  TPM library
+
+### openssl
+
+  OpenSSL library
+
+### smallc
+
+  A small libc for OpenSSL in baremetal environment
+
+### tpm
+
+  Tpm for library
+
+### openssl-stubs
+
+  Openssl library running on baremental environment stubs
