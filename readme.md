@@ -5,7 +5,7 @@ A rust version tpm-20-ref implementation.
 It refers to https://github.com/microsoft/ms-tpm-20-ref.
 
 ## Known limitation
-This package is only the sample code to show the concept. It does not have a full validation such as robustness functional test and fuzzing test. It does not meet the production quality yet. Any codes including the API definition, the libary and the drivers are subject to change.
+This package is only the sample code to show the concept. It does not have a full validation such as robustness functional test and fuzzing test. It does not meet the production quality yet. Any codes including the API definition, the library and the drivers are subject to change.
 
 ## Submodule
 
@@ -14,11 +14,21 @@ This package is only the sample code to show the concept. It does not have a ful
 
 ## Build
 
-### Build UEFI target
+- cd ms-tpm-20-ref
 
-```
-cargo build -Zbuild-std=core,alloc,compiler_builtins -Zbuild-std-features=compiler-builtins-mem --target x86_64-unknown-uefi --release
-```
+  git submodule update --init --recursive
+
+- smallc
+
+  CC=clang AR=llvm-ar make
+
+- openssl-stubs
+
+  follow openssl-how-to.md to build libcrypto.a(crypto.lib)
+
+- tpm
+
+  CC=clang AR=llvm-ar make -j8
 
 ## Directory layout
 
@@ -30,9 +40,9 @@ cargo build -Zbuild-std=core,alloc,compiler_builtins -Zbuild-std-features=compil
 
   OpenSSL library
 
-### smallc
+### small c library
 
-  A small libc for OpenSSL in baremetal environment
+  A small c library for OpenSSL in bare metal environment
 
 ### tpm
 
@@ -40,4 +50,4 @@ cargo build -Zbuild-std=core,alloc,compiler_builtins -Zbuild-std-features=compil
 
 ### openssl-stubs
 
-  Openssl library running on baremental environment stubs
+  Openssl library running on bare metal environment stubs
