@@ -23,6 +23,7 @@ TPM_H := $(wildcard ../ms-tpm-20-ref/TPMCmd/tpm/include/*.h) $(wildcard ../ms-tp
 TPM_OBJ = $(TPM_C:.c=.o)
 TPM_INC = -I../ms-tpm-20-ref/TPMCmd/tpm/include \
 	-I../ms-tpm-20-ref/TPMCmd/tpm/include/prototypes
+TPM_CONFIG_INCLUDE = -include ./include/TpmProfile.h
 TPM_TARGET = libtpm.a tpm.lib
 TPM_DEFINED = -DTHIRTY_TWO_BIT -DRADIX_BITS=32 -DCERTIFYX509_DEBUG=NO -DSIMULATION=NO
 
@@ -33,14 +34,14 @@ $(PLATFORM_TARGET): $(PLATFORM_OBJ)
 	$(AR) ru $@ $^
 
 $(PLATFORM_OBJ): %.o: %.c $(PLATFORM_H)
-	$(CC) $(LIBC_INC) $(PLATFORM_INC) $(TPM_INC) $(TPM_DEFINED) $(PLATFORM_CFLAGS) $(CFLAGS) -c -o $@ $<
+	$(CC) $(TPM_CONFIG_INCLUDE) $(LIBC_INC) $(PLATFORM_INC) $(TPM_INC) $(TPM_DEFINED) $(PLATFORM_CFLAGS) $(CFLAGS) -c -o $@ $<
 
 $(TPM_TARGET): $(TPM_OBJ)
 	$(RM) $@
 	$(AR) ru $@ $^
 
 $(TPM_OBJ): %.o: %.c $(TPM_H)
-	$(CC) $(LIBC_INC) $(TPM_INC) $(PLATFORM_INC) $(OPENSSL_INC) $(TPM_DEFINED) $(CFLAGS) -c -o $@ $<
+	$(CC)  $(TPM_CONFIG_INCLUDE) $(LIBC_INC) $(TPM_INC) $(PLATFORM_INC) $(OPENSSL_INC) $(TPM_DEFINED) $(CFLAGS) -c -o $@ $<
 
 clean: clean_platform clean_tpm
 
