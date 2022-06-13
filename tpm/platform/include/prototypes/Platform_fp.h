@@ -507,7 +507,8 @@ _plat__RunCommand(
     uint32_t         requestSize,   // IN: command buffer size
     unsigned char   *request,       // IN: command buffer
     uint32_t        *responseSize,  // IN/OUT: response buffer size
-    unsigned char   **response      // IN/OUT: response buffer
+    unsigned char   **response,     // IN/OUT: response buffer
+    uint32_t         contextId
 );
 
 //***_plat__Fail()
@@ -533,6 +534,28 @@ _plat__GetUnique(
     uint32_t             which,         // authorities (0) or details
     uint32_t             bSize,         // size of the buffer
     unsigned char       *b              // output buffer
+);
+
+LIB_EXPORT int
+_plat__TPM_Terminate(
+    uint32_t        contextId
+);
+
+LIB_EXPORT int
+_plat__TPM_Initialize(
+    uint32_t        contextId,
+    int             firstTime       // IN: indicates if this is the first call from
+                                    //     main()
+);
+
+LIB_EXPORT uint64_t
+_plat__ReadTsc(
+    void
+);
+
+LIB_EXPORT uint64_t
+_plat__SwitchTimeUsed(
+    void
 );
 
 #endif  // _PLATFORM_FP_H_
