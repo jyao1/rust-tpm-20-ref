@@ -508,7 +508,7 @@ _plat__RunCommand(
     unsigned char   *request,       // IN: command buffer
     uint32_t        *responseSize,  // IN/OUT: response buffer size
     unsigned char   **response,     // IN/OUT: response buffer
-    uint32_t         contextId
+    __uint128_t      contextId
 );
 
 //***_plat__Fail()
@@ -538,12 +538,12 @@ _plat__GetUnique(
 
 LIB_EXPORT int
 _plat__TPM_Terminate(
-    uint32_t        contextId
+    __uint128_t     contextId
 );
 
 LIB_EXPORT int
 _plat__TPM_Initialize(
-    uint32_t        contextId,
+    __uint128_t     contextId,
     int             firstTime       // IN: indicates if this is the first call from
                                     //     main()
 );

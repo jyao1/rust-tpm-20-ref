@@ -689,17 +689,18 @@ EXTERN FailFunction    *LibFailCallback;
 #endif
 
 // This is a PoC, so we design an array to simplify the implementation
+typedef __uint128_t UINT128;
+
 #if defined TPM_CONTEXT_C
-extern UINT32          g_CurrentTpmContextId;
+extern UINT128         g_CurrentTpmContextId;
 extern UINT32          g_CurrentTpmContextCnt;
-extern UINT32          g_TpmContextIdList[MAX_TPM_CONTEXT_COUNT];
+extern UINT128         g_TpmContextIdList[MAX_TPM_CONTEXT_COUNT];
 extern TPM_CONTEXT     g_TpmContextContentList[MAX_TPM_CONTEXT_COUNT];
 #endif
 
-
 void
 SwitchTpmContext(
-    uint32_t  contextId
+    UINT128  contextId
 );
 
 uint64_t
