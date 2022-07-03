@@ -11,9 +11,9 @@
 #include "PlatformData.h"
 #include "TpmContext.h"
 
-UINT32 g_CurrentTpmContextId = 0;
+UINT128 g_CurrentTpmContextId = 0;
 UINT32 g_CurrentTpmContextCnt = 0;
-UINT32 g_TpmContextIdList[MAX_TPM_CONTEXT_COUNT] = {0};
+UINT128 g_TpmContextIdList[MAX_TPM_CONTEXT_COUNT] = {0};
 TPM_CONTEXT g_TpmContextContentList[MAX_TPM_CONTEXT_COUNT] = {0};
 uint64_t g_TpmContextSwitchTime = 0;
 
@@ -591,7 +591,7 @@ void _SavePopContext(TPM_CONTEXT *context, BOOL save)
 }
 
 void PopTpmContext(
-    UINT32 contextId)
+    UINT128 contextId)
 {
   int i = 0;
   TPM_CONTEXT *context = NULL;
@@ -629,7 +629,7 @@ void PopTpmContext(
 }
 
 void SaveTpmContext(
-    UINT32 contextId)
+    UINT128 contextId)
 {
   int i = 0;
   TPM_CONTEXT *context = NULL;
@@ -698,7 +698,7 @@ GetSwitchTimeUsed(
 }
 
 void SwitchTpmContext(
-    UINT32 contextId)
+    UINT128 contextId)
 {
   uint64_t start, end;
 
