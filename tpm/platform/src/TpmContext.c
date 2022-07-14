@@ -690,6 +690,31 @@ ReadTsc(
 }
 
 uint64_t
+GetTscFreq(
+  void
+)
+{
+  uint32_t eax = 0, ebx = 0, ecx = 0, edx = 0;
+  uint32_t leaf = 0x15;
+
+  __asm__ volatile (
+    "xor %%ecx, %%ecx\n"
+    "cpuid\n"
+    : "=a"(eax), "=b"(ebx), "=c"(ecx), "=d"(edx)
+    : "a"(leaf)
+  );
+
+  if (eax == 0 || ebx == 0)
+  {
+    return 0;
+  }
+  else
+  {
+    return (uint64_t)((uint64_t)ecx * (uint64_t)ebx) / (uint64_t)eax;
+  }
+}
+
+uint64_t
 GetSwitchTimeUsed(
     void
 )

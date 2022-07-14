@@ -713,4 +713,9 @@ ReadTsc(
   void
 );
 
+uint64_t
+GetTscFreq(
+  void
+);
+
 #endif
