@@ -124,6 +124,15 @@ _plat__ReadTsc(
     return ReadTsc();
 }
 
+LIB_EXPORT uint64_t
+_plat__GetTscFreq(
+    void
+)
+{
+    return GetTscFreq();
+}
+
+
 LIB_EXPORT int
 _plat__TPM_Initialize(
     __uint128_t     contextId,

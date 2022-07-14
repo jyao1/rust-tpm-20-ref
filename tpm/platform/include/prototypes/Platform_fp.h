@@ -558,4 +558,9 @@ _plat__SwitchTimeUsed(
     void
 );
 
+LIB_EXPORT uint64_t
+_plat__GetTscFreq(
+    void
+);
+
 #endif  // _PLATFORM_FP_H_
